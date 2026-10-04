@@ -1,0 +1,52 @@
+/*Paletas de cores
+--ink-black: #0d1b2aff;
+--prussian-blue: #1b263bff;
+--dusk-blue: #415a77ff;
+--dusty-denim: #778da9ff;
+--alabaster-grey: #e0e1ddff;
+*/
+
+
+html, body, #root {
+  height: 100%;
+  background-color: #e0e1dd;
+
+}
+
+.corpo-formulario {
+  color: #131313;
+  text-align: justify;
+  padding: 50px;
+}
+
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 220px;
+}
+
+input,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cep-input {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cep-input label {
+  flex: 1 1 220px;
+}

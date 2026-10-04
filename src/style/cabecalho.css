@@ -1,0 +1,42 @@
+.cabecalho {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.cabecalho h1 {
+    flex: 1 1 100%;
+    margin: 0;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+}
+
+.cabecalho p {
+    flex: 1 1 160px;
+    margin: 0;
+    min-width: 0;
+    text-align: center;
+}
+
+.cabecalho a {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .cabecalho p {
+        flex: 0 1 auto;
+        width: 100%;
+        text-align: center;
+    }
+}
