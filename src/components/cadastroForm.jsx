@@ -7,6 +7,7 @@ const service = cadstroFormService();
 
 function CadastroForm() {
     const [telefoneError, setTelefoneError] = useState('');
+    const [cpfError, setCpfError] = useState('');
 
     function validaTelefone(event) {
         try {
@@ -17,17 +18,34 @@ function CadastroForm() {
         }
     }
 
+    function validaCPF(event) {
+        try {
+            service.validadorCPF(event.target.value);
+            setCpfError('');
+        } catch (error) {
+            setCpfError(error.message);
+        }
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
         
         const formData = new FormData(event.target);
         const telefone = formData.get("telefone");
+        const cpf = formData.get("cpf");
         
         try {
             service.validadorTelefone(telefone);
             setTelefoneError('');
         } catch (error) {
             setTelefoneError(error.message);
+        }
+
+        try {
+            service.validadorCPF(cpf);
+            setCpfError('');
+        } catch (error) {
+            setCpfError(error.message);
         }
     }
 
@@ -61,7 +79,16 @@ function CadastroForm() {
                 </label>
                 <label>
                     CPF:
-                    <input type="text" />
+                    <input
+                        type="text"
+                        name="cpf"
+                        inputMode="numeric"
+                        onChange={validaCPF}
+                        onBlur={validaCPF}
+                    />
+                    {cpfError && (
+                        <span className="cpf-error">{cpfError}</span>
+                    )}
                 </label>
                 <label>
                     RG:

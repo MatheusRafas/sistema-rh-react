@@ -51,7 +51,8 @@ select {
   flex: 1 1 220px;
 }
 
-.telefone-error {
+.telefone-error,
+.cpf-error {
   color: #b42318;
   font-size: 0.875rem;
   margin-bottom: 10px;
