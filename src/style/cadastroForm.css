@@ -50,3 +50,9 @@ select {
 .cep-input label {
   flex: 1 1 220px;
 }
+
+.telefone-error {
+  color: #b42318;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}

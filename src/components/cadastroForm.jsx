@@ -1,10 +1,39 @@
 import "../style/cadastroForm.css";
+import { useState } from "react";
 import CepInput from './cepInput';
+import cadstroFormService from '../services/cadastroFromService';
+
+const service = cadstroFormService();
 
 function CadastroForm() {
+    const [telefoneError, setTelefoneError] = useState('');
+
+    function validaTelefone(event) {
+        try {
+            service.validadorTelefone(event.target.value);
+            setTelefoneError('');
+        } catch (error) {
+            setTelefoneError(error.message);
+        }
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+        const telefone = formData.get("telefone");
+        
+        try {
+            service.validadorTelefone(telefone);
+            setTelefoneError('');
+        } catch (error) {
+            setTelefoneError(error.message);
+        }
+    }
+
     return ( 
         <div className="corpo-formulario">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Nome Completo:
                     <input type="text" />
@@ -19,7 +48,16 @@ function CadastroForm() {
                 </label>
                 <label>
                     Telefone:
-                    <input type="tel" />
+                    <input
+                        type="tel"
+                        name="telefone"
+                        inputMode="numeric"
+                        onChange={validaTelefone}
+                        onBlur={validaTelefone}
+                    />
+                    {telefoneError && (
+                        <span className="telefone-error">{telefoneError}</span>
+                    )}
                 </label>
                 <label>
                     CPF:
@@ -87,6 +125,8 @@ function CadastroForm() {
                     <input type="date" />
                 </label>
                 <CepInput />
+
+                <button type="submit">Cadastrar</button>
             </form>
         </div>
     )
